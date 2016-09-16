@@ -14,175 +14,150 @@ var ange_cards = bk.ange_cards[tabid];
 
 var doc_content = {};
 var content_content = {};
-var column_content = {};
+var column1_content = {};
 var table_content = {};
-var table_body;
+var table_body = [];
 
 doc_content['content'] = [];
 content_content['columns'] = []
-table_body = [];
 
 for (var itr = 0; itr < 38; itr++) {
-	var table_raw = [];
-	var table_raw1 = {};
-	var table_raw2 = {};
-	var table_raw3 = {};
-	var table_raw4 = {};
-	var table_raw5 = {};
+	var table_cols = [];
+	var table_col1 = {};
+	var table_col2 = {};
+	var table_col3 = {};
+	var table_col4 = {};
+	var table_col5 = {};
 
-	table_raw1['fontSize'] = 8;
-	table_raw2['fontSize'] = 8;
-	table_raw3['fontSize'] = 8;
-	table_raw4['fontSize'] = 7;
-	table_raw5['fontSize'] = 8;
-	/*
-	 * document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " " +
-	 * ange_cards[itr].linkframe + "<br/>");
-	 */
-	table_raw1['text'] = ange_cards[itr].number;
+	table_col1['fontSize'] = 8;
+	table_col2['fontSize'] = 8;
+	table_col3['fontSize'] = 8;
+	table_col4['fontSize'] = 6.5;
+	table_col5['fontSize'] = 8;
+
+	table_col1['text'] = ange_cards[itr].number;
 
 	if (itr < 20) {
 		/* 1-20 must be 'level 0 or 1' and have link frames. */
-		table_raw1['margin'] = [ 0, 0, 0, 1 ];
-		table_raw2['text'] = " ";
-		table_raw2['margin'] = [ 8, 0, 0, 0 ]
+		table_col1['margin'] = [ 0, 0, 0, 1];
+		table_col2['text'] = " ";
+		table_col2['margin'] = [ 8, 0, 0, 0 ];
 
-		table_raw3['text'] = "";
+		table_col3['text'] = "";
 		if (ange_cards[itr].linkframe != -1) {
 			if (ange_cards[itr].linkframe.search(/Σ/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 12, 0, 0, 0 ];
+				table_col3['text'] = "○";
+				table_col3['margin'] = [ 12, 0, 0, 0 ];
 			} else if (ange_cards[itr].linkframe.search(/Ω/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 0, 0, 0, 0 ];
+				table_col3['text'] = "○";
+				table_col3['margin'] = [ 0, 0, 0, 0 ];
 			} else if (ange_cards[itr].linkframe.search(/∀∀/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 28, 0, 0, 0 ];
+				table_col3['text'] = "○";
+				table_col3['margin'] = [ 28, 0, 0, 0 ];
 			} else {
-				table_raw3['text'] = "";
+				table_col3['text'] = "";
 			}
 		}
 	} else {
-		table_raw1['margin'] = [ 0, 0, 0, 0.12 ];
-		table_raw2['text'] = "○";
+		table_col1['margin'] = [ 0, 0, 0, 0.12 ];
+		table_col2['text'] = "○";
 		if (ange_cards[itr].type.search(/PG/) != -1) {
-			table_raw2['margin'] = [ 2, 0, 0, 0 ];
+			table_col2['margin'] = [ 2, 0, 0, 0 ];
 		} else {
-			table_raw2['margin'] = [ 12, 0, 0, 0 ];
+			table_col2['margin'] = [ 12, 0, 0, 0 ];
 		}
 
-		table_raw3['text'] = "";
+		table_col3['text'] = "";
+		table_col3['margin'] = [ 0, 0, 0, 0 ];
 		if (ange_cards[itr].linkframe != -1) {
 			if (ange_cards[itr].linkframe.search(/Σ/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 12, 0, 0, 0 ];
+				table_col3['text'] = "○";
+				table_col3['margin'] = [ 12, 0, 0, 0 ];
 			} else if (ange_cards[itr].linkframe.search(/Ω/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 0, 0, 0, 0 ];
+				table_col3['text'] = "○";
+				table_col3['margin'] = [ 0, 0, 0, 0 ];
 			} else if (ange_cards[itr].linkframe.search(/∀∀/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 28, 0, 0, 0 ];
+				table_col3['text'] = "○";
+				table_col3['margin'] = [ 28, 0, 0, 0 ];
 			} else {
-				table_raw3['text'] = "";
+				table_col3['text'] = "";
 			}
 		}
 	}
-	table_raw4['text'] = ange_cards[itr].name;
-	table_raw5['text'] = "1";
+	table_col4['text'] = ange_cards[itr].name;
+	table_col5['text'] = "1";
 
-	table_raw.push(table_raw1);
-	table_raw.push(table_raw2);
-	table_raw.push(table_raw3);
-	table_raw.push(table_raw4);
-	table_raw.push(table_raw5);
-	table_body.push(table_raw);
+	table_cols.push(table_col1, table_col2, table_col3, table_col4, table_col5);
+	table_body.push(table_cols);
+
 }
 
 table_content['body'] = table_body;
-// table_content['widths'] = [40, 25, 35, 200];
 table_content['widths'] = [ 40, 25, 35, 160, 35 ];
 
-column_content['table'] = table_content;
-column_content['layout'] = 'noBorders';
-column_content['margin'] = [ 95, 115, 0, 0 ];
-column_content['width'] = "50%";
-content_content['columns'].push(column_content);
+column1_content['table'] = table_content;
+column1_content['layout'] = 'noBorders';
+column1_content['margin'] = [ 95, 115, 0, 0 ];
+column1_content['width'] = "50%";
+content_content['columns'].push(column1_content);
 
-var table2_body;
-table2_body = [];
+var table2_body = [];
 for (var itr = 38; itr < ange_cards.length; itr++) {
-	var table_raw = [];
-	var table_raw1 = {};
-	var table_raw2 = {};
-	var table_raw3 = {};
-	var table_raw4 = {};
-	var table_raw5 = {};
+	var table_cols = [];
+	var table_col1 = {};
+	var table_col2 = {};
+	var table_col3 = {};
+	var table_col4 = {};
+	var table_col5 = {};
 
-	table_raw1['fontSize'] = 8;
-	table_raw2['fontSize'] = 8;
-	table_raw3['fontSize'] = 8;
-	table_raw4['fontSize'] = 7;
-	table_raw5['fontSize'] = 8;
+	table_col1['fontSize'] = 8;
+	table_col2['fontSize'] = 8;
+	table_col3['fontSize'] = 8;
+	table_col4['fontSize'] = 6.5;
+	table_col5['fontSize'] = 8;
 
 	/*
 	 * document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " " +
 	 * ange_cards[itr].linkframe + "<br/>");
 	 */
-	table_raw1['text'] = ange_cards[itr].number;
+	table_col1['text'] = ange_cards[itr].number;
 	if (itr == 54) {
-		var table_blank1 = [];
-		var table_blank1_raw1 = {};
-		var table_blank1_raw2 = {};
-		var table_blank1_raw3 = {};
-		var table_blank1_raw4 = {};
-		var table_blank2 = [];
-		var table_blank2_raw1 = {};
-		var table_blank2_raw2 = {};
-		var table_blank2_raw3 = {};
-		var table_blank2_raw4 = {};
+		var table_blank_raw1 = [];
+		var table_blank1_col1 = {};
+		var table_blank1_col2 = {};
+		var table_blank1_col3 = {};
+		var table_blank1_col4 = {};
+		var table_blank_raw2 = [];
+		var table_blank2_col1 = {};
+		var table_blank2_col2 = {};
+		var table_blank2_col3 = {};
+		var table_blank2_col4 = {};
 
-		table_blank1_raw1['text'] = " ";
-		table_blank1_raw1['fontSize'] = 8;
-		table_blank1_raw1['margin'] = [ 0, 0, 0, 0 ];
-		table_blank1_raw2['text'] = " ";
-		table_blank1_raw2['fontSize'] = 8;
-		table_blank1_raw3['text'] = " ";
-		table_blank1_raw3['fontSize'] = 8;
-		table_blank1_raw4['text'] = " ";
-		table_blank1_raw4['fontSize'] = 8;
-		table_blank2_raw1['text'] = " ";
-		table_blank2_raw1['fontSize'] = 8;
-		table_blank2_raw1['margin'] = [ 0, 0, 0, 0 ];
-		table_blank2_raw2['text'] = " ";
-		table_blank2_raw2['fontSize'] = 8;
-		table_blank2_raw3['text'] = " ";
-		table_blank2_raw3['fontSize'] = 8;
-		table_blank2_raw4['text'] = " ";
-		table_blank2_raw4['fontSize'] = 8;
+		table_blank1_col1 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank1_col2 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank1_col3 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank1_col4 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank2_col1 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank2_col2 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank2_col3 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
+		table_blank2_col4 = {text:" ", fontSize:8, margin:[0, 0, 0, 0]};
 
-		table_blank1.push(table_blank1_raw1);
-		table_blank1.push(table_blank1_raw2);
-		table_blank1.push(table_blank1_raw3);
-		table_blank1.push(table_blank1_raw4);
-		table2_body.push(table_blank1);
+		table_blank_raw1.push(table_blank1_col1, table_blank1_col2, table_blank1_col3, table_blank1_col4);
+		table_blank_raw2.push(table_blank2_col1, table_blank2_col2, table_blank2_col3, table_blank2_col4);
+		table2_body.push(table_blank_raw1, table_blank_raw2);
 
-		table_blank2.push(table_blank2_raw1);
-		table_blank2.push(table_blank2_raw2);
-		table_blank2.push(table_blank2_raw3);
-		table_blank2.push(table_blank2_raw4);
-		table2_body.push(table_blank2);
 	}
 
 	if (itr < 54) {
 		/* 38-54: progress or action cards' entry */
-		table_raw1['margin'] = [ 0, 0, 0, 1 ];
-		table_raw2['text'] = "○";
-		table_raw2['margin'] = [ 8, 0, 0, 0 ]
+		table_col1['margin'] = [ 0, 0, 0, 1 ];
+		table_col2['text'] = "○";
+		table_col2['margin'] = [ 8, 0, 0, 0 ]
 
 		if (ange_cards[itr].type.search(/PG/) != -1) {
-			table_raw2['margin'] = [ 2, 0, 0, 0 ];
+			table_col2['margin'] = [ 2, 0, 0, 0 ];
 		} else {
-			table_raw2['margin'] = [ 17, 0, 0, 0 ];
+			table_col2['margin'] = [ 17, 0, 0, 0 ];
 		}
 
 		/*
@@ -197,8 +172,8 @@ for (var itr = 38; itr < ange_cards.length; itr++) {
 		 */
 	} else {
 		/* 55-64: exceed cards' entry */
-		table_raw1['margin'] = [ 0, 0, 0, 0.8 ];
-		table_raw2['text'] = " ";
+		table_col1['margin'] = [ 0, 0, 0, 0.8 ];
+		table_col2['text'] = " ";
 		/*
 		 * if(ange_cards[itr].type.search(/PG/) != -1) { table_raw2['margin'] = [
 		 * 2, 0, 0, 0 ]; } else { table_raw2['margin'] = [ 12, 0, 0, 0 ]; }
@@ -215,21 +190,24 @@ for (var itr = 38; itr < ange_cards.length; itr++) {
 		 * table_raw3['text'] = ""; } }
 		 */
 	}
-	table_raw4['text'] = ange_cards[itr].name;
-	table_raw5['text'] = "1";
+	table_col4['text'] = ange_cards[itr].name;
+	table_col5['text'] = "1";
 
+	table_cols.push(table_col1, table_col2, table_col4, table_col5);
+	table2_body.push(table_cols);
+/*
 	table_raw.push(table_raw1);
 	table_raw.push(table_raw2);
 	// table_raw.push(table_raw3);
 	table_raw.push(table_raw4);
 	table_raw.push(table_raw5);
 	table2_body.push(table_raw);
+*/
 }
 var column2_content = {};
 var table2_content = {};
 
 table2_content['body'] = table2_body;
-// table2_content['widths'] = [40, 25, 35, 160];
 table2_content['widths'] = [ 40, 25, 160, 35 ];
 
 column2_content['table'] = table2_content;
