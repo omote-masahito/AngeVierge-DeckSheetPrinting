@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "AngeVierge-DeckSheetPrinting",
+  "short_name": "AngeVierge-DeckSheetPrinting",
+  "description": "",
+  "version": "0.0.1",
+  "minimum_chrome_version": "38",
+
+  "icons": {
+    "16": "assets/icon_16.png",
+    "128": "assets/icon_128.png"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "page_action": {
+    "default_icon" : "assets/icon_16.png"
+   ,"default_title": "印刷用ページ出す"
+  },
+  "content_scripts" : [{
+      "matches" : ["https://ange-vierge.com/publish_deck/?id=*", "https://ange-vierge.com/deck/?deck=*"],
+      "js" : ["contentscript.js"]
+  }],
+  "permissions": [
+    "tabs"
+  ]
+  
+}
