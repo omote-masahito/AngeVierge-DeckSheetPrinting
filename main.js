@@ -35,15 +35,16 @@ for (var itr = 0; itr < 38; itr++) {
 	table_raw3['fontSize'] = 8;
 	table_raw4['fontSize'] = 7;
 	table_raw5['fontSize'] = 8;
-/*
-	document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " "
-			+ ange_cards[itr].linkframe + "<br/>");
-*/
+	/*
+	 * document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " " +
+	 * ange_cards[itr].linkframe + "<br/>");
+	 */
 	table_raw1['text'] = ange_cards[itr].number;
 
 	if (itr < 20) {
+		/* 1-20 must be 'level 0 or 1' and have link frames. */
 		table_raw1['margin'] = [ 0, 0, 0, 1 ];
-		table_raw2['text'] = "○";
+		table_raw2['text'] = " ";
 		table_raw2['margin'] = [ 8, 0, 0, 0 ]
 
 		table_raw3['text'] = "";
@@ -64,7 +65,7 @@ for (var itr = 0; itr < 38; itr++) {
 	} else {
 		table_raw1['margin'] = [ 0, 0, 0, 0.12 ];
 		table_raw2['text'] = "○";
-		if(ange_cards[itr].type.search(/PG/) != -1) {
+		if (ange_cards[itr].type.search(/PG/) != -1) {
 			table_raw2['margin'] = [ 2, 0, 0, 0 ];
 		} else {
 			table_raw2['margin'] = [ 12, 0, 0, 0 ];
@@ -98,12 +99,12 @@ for (var itr = 0; itr < 38; itr++) {
 }
 
 table_content['body'] = table_body;
-//table_content['widths'] = [40, 25, 35, 200];
-table_content['widths'] = [40, 25, 35, 160, 35];
+// table_content['widths'] = [40, 25, 35, 200];
+table_content['widths'] = [ 40, 25, 35, 160, 35 ];
 
 column_content['table'] = table_content;
 column_content['layout'] = 'noBorders';
-column_content['margin'] = [95, 115, 0, 0];
+column_content['margin'] = [ 95, 115, 0, 0 ];
 column_content['width'] = "50%";
 content_content['columns'].push(column_content);
 
@@ -123,9 +124,10 @@ for (var itr = 38; itr < ange_cards.length; itr++) {
 	table_raw4['fontSize'] = 7;
 	table_raw5['fontSize'] = 8;
 
-/*	document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " "
-			+ ange_cards[itr].linkframe + "<br/>");
-*/
+	/*
+	 * document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " " +
+	 * ange_cards[itr].linkframe + "<br/>");
+	 */
 	table_raw1['text'] = ange_cards[itr].number;
 	if (itr == 54) {
 		var table_blank1 = [];
@@ -172,60 +174,53 @@ for (var itr = 38; itr < ange_cards.length; itr++) {
 	}
 
 	if (itr < 54) {
+		/* 38-54: progress or action cards' entry */
 		table_raw1['margin'] = [ 0, 0, 0, 1 ];
 		table_raw2['text'] = "○";
 		table_raw2['margin'] = [ 8, 0, 0, 0 ]
 
-
-		/*table_raw3['text'] = "";
-		if (ange_cards[itr].linkframe != -1) {
-			if (ange_cards[itr].linkframe.search(/Σ/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 12, 0, 0, 0 ];
-			} else if (ange_cards[itr].linkframe.search(/Ω/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 0, 0, 0, 0 ];
-			} else if (ange_cards[itr].linkframe.search(/∀∀/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 28, 0, 0, 0 ];
-			} else {
-				table_raw3['text'] = "";
-			}
-		}
-		*/
-	} else {
-		table_raw1['margin'] = [ 0, 0, 0, 0.8 ];
-		table_raw2['text'] = "○";
-		if(ange_cards[itr].type.search(/PG/) != -1) {
+		if (ange_cards[itr].type.search(/PG/) != -1) {
 			table_raw2['margin'] = [ 2, 0, 0, 0 ];
 		} else {
-			table_raw2['margin'] = [ 12, 0, 0, 0 ];
+			table_raw2['margin'] = [ 17, 0, 0, 0 ];
 		}
 
 		/*
-		table_raw3['text'] = "";
-		if (ange_cards[itr].linkframe != -1) {
-			if (ange_cards[itr].linkframe.search(/Σ/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 12, 0, 0, 0 ];
-			} else if (ange_cards[itr].linkframe.search(/Ω/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 0, 0, 0, 0 ];
-			} else if (ange_cards[itr].linkframe.search(/∀∀/) != -1) {
-				table_raw3['text'] = "○";
-				table_raw3['margin'] = [ 28, 0, 0, 0 ];
-			} else {
-				table_raw3['text'] = "";
-			}
-		}
-		*/
+		 * table_raw3['text'] = ""; if (ange_cards[itr].linkframe != -1) { if
+		 * (ange_cards[itr].linkframe.search(/Σ/) != -1) { table_raw3['text'] =
+		 * "○"; table_raw3['margin'] = [ 12, 0, 0, 0 ]; } else if
+		 * (ange_cards[itr].linkframe.search(/Ω/) != -1) { table_raw3['text'] =
+		 * "○"; table_raw3['margin'] = [ 0, 0, 0, 0 ]; } else if
+		 * (ange_cards[itr].linkframe.search(/∀∀/) != -1) { table_raw3['text'] =
+		 * "○"; table_raw3['margin'] = [ 28, 0, 0, 0 ]; } else {
+		 * table_raw3['text'] = ""; } }
+		 */
+	} else {
+		/* 55-64: exceed cards' entry */
+		table_raw1['margin'] = [ 0, 0, 0, 0.8 ];
+		table_raw2['text'] = " ";
+		/*
+		 * if(ange_cards[itr].type.search(/PG/) != -1) { table_raw2['margin'] = [
+		 * 2, 0, 0, 0 ]; } else { table_raw2['margin'] = [ 12, 0, 0, 0 ]; }
+		 */
+
+		/*
+		 * table_raw3['text'] = ""; if (ange_cards[itr].linkframe != -1) { if
+		 * (ange_cards[itr].linkframe.search(/Σ/) != -1) { table_raw3['text'] =
+		 * "○"; table_raw3['margin'] = [ 12, 0, 0, 0 ]; } else if
+		 * (ange_cards[itr].linkframe.search(/Ω/) != -1) { table_raw3['text'] =
+		 * "○"; table_raw3['margin'] = [ 0, 0, 0, 0 ]; } else if
+		 * (ange_cards[itr].linkframe.search(/∀∀/) != -1) { table_raw3['text'] =
+		 * "○"; table_raw3['margin'] = [ 28, 0, 0, 0 ]; } else {
+		 * table_raw3['text'] = ""; } }
+		 */
 	}
 	table_raw4['text'] = ange_cards[itr].name;
 	table_raw5['text'] = "1";
 
 	table_raw.push(table_raw1);
 	table_raw.push(table_raw2);
-//	table_raw.push(table_raw3);
+	// table_raw.push(table_raw3);
 	table_raw.push(table_raw4);
 	table_raw.push(table_raw5);
 	table2_body.push(table_raw);
@@ -234,12 +229,12 @@ var column2_content = {};
 var table2_content = {};
 
 table2_content['body'] = table2_body;
-//table2_content['widths'] = [40, 25, 35, 160];
-table2_content['widths'] = [40, 25, 160, 35];
+// table2_content['widths'] = [40, 25, 35, 160];
+table2_content['widths'] = [ 40, 25, 160, 35 ];
 
 column2_content['table'] = table2_content;
 column2_content['layout'] = 'noBorders';
-column2_content['margin'] = [51, 115, 0, 0];
+column2_content['margin'] = [ 51, 115, 0, 0 ];
 column2_content['width'] = "50%";
 content_content['columns'].push(column2_content);
 
@@ -261,22 +256,24 @@ doc_content['pageMargins'] = [ 0, 0, 0, 0 ];
 doc_content['pageSize'] = "A4";
 
 pdfMake.fonts = {
-		IPAgothic : {
-			normal : 'ipagp.ttf',
-			bold : 'ipagp.ttf',
-			italics : 'ipagp.ttf',
-			bolditalics : 'ipagp.ttf'
-		},
-		IPAmincho : {
-			normal : 'ipamp.ttf',
-			bold : 'ipamp.ttf',
-			italics : 'ipamp.ttf',
-			bolditalics : 'ipamp.ttf'
-		}
-	};
+	IPAgothic : {
+		normal : 'ipagp.ttf',
+		bold : 'ipagp.ttf',
+		italics : 'ipagp.ttf',
+		bolditalics : 'ipagp.ttf'
+	},
+	IPAmincho : {
+		normal : 'ipamp.ttf',
+		bold : 'ipamp.ttf',
+		italics : 'ipamp.ttf',
+		bolditalics : 'ipamp.ttf'
+	}
+};
 
 pdfMake.createPdf(doc_content).open();
 chrome.tabs.getCurrent(function(tab) {
-    //chrome.tabs.remove(tab.id, function() { });
-	setTimeout(function(){chrome.tabs.remove(tab.id, function() { });}, 2000)
+	setTimeout(function() {
+		chrome.tabs.remove(tab.id, function() {
+		});
+	}, 2000)
 });
