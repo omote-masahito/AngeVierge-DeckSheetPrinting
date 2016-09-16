@@ -35,9 +35,10 @@ for (var itr = 0; itr < 38; itr++) {
 	table_raw3['fontSize'] = 8;
 	table_raw4['fontSize'] = 7;
 	table_raw5['fontSize'] = 8;
-
+/*
 	document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " "
 			+ ange_cards[itr].linkframe + "<br/>");
+*/
 	table_raw1['text'] = ange_cards[itr].number;
 
 	if (itr < 20) {
@@ -124,8 +125,8 @@ for (var itr = 38; itr < ange_cards.length; itr++) {
 
 /*	document.write(ange_cards[itr].name + " " + ange_cards[itr].number + " "
 			+ ange_cards[itr].linkframe + "<br/>");
-	table_raw1['text'] = ange_cards[itr].number;
 */
+	table_raw1['text'] = ange_cards[itr].number;
 	if (itr == 54) {
 		var table_blank1 = [];
 		var table_blank1_raw1 = {};
