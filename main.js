@@ -15,11 +15,28 @@ var ange_cards = bk.ange_cards[tabid];
 var doc_content = {};
 var content_content = {};
 var column1_content = {};
+var column2_content = {};
 var table_content = {};
 var table_body = [];
+var table2_content = {};
 
 doc_content['content'] = [];
-content_content['columns'] = []
+content_content['columns'] = [];
+
+if(true) { //(options.print_deckname == true) {
+	var header_deckname = {text:ange_cards[0].deckname, fontSize:12, margin:[110, 78, 0, 0]};
+	doc_content['content'].push(header_deckname);
+	column1_content['margin'] = [ 95, 25, 0, 0 ];
+	column2_content['margin'] = [ 51, 25, 0, 0 ];
+} else {
+	column1_content['margin'] = [ 95, 115, 0, 0 ];
+	column2_content['margin'] = [ 51, 115, 0, 0 ];
+}
+
+column1_content['layout'] = 'noBorders';
+column1_content['width'] = "50%";
+column2_content['layout'] = 'noBorders';
+column2_content['width'] = "50%";
 
 for (var itr = 0; itr < 38; itr++) {
 	var table_cols = [];
@@ -84,21 +101,29 @@ for (var itr = 0; itr < 38; itr++) {
 			}
 		}
 	}
-	table_col4['text'] = ange_cards[itr].name;
-	table_col5['text'] = "1";
+
+	if(true){ //(options.use_official_writing_rule == true)
+		table_col4['text'] = ange_cards[itr].name;
+		table_col5['text'] = ange_cards[itr].amount;
+		if(itr > 0) {
+			if(ange_cards[itr].name === ange_cards[itr - 1].name && ange_cards[itr].amount > 1) {
+				table_col4['text'] = "↓";
+				table_col5['text'] = "↓";
+			}
+		}
+	} else {
+		table_col4['text'] = ange_cards[itr].name;
+		table_col5['text'] = "1";
+	}
 
 	table_cols.push(table_col1, table_col2, table_col3, table_col4, table_col5);
 	table_body.push(table_cols);
-
 }
 
 table_content['body'] = table_body;
 table_content['widths'] = [ 40, 25, 35, 160, 35 ];
 
 column1_content['table'] = table_content;
-column1_content['layout'] = 'noBorders';
-column1_content['margin'] = [ 95, 115, 0, 0 ];
-column1_content['width'] = "50%";
 content_content['columns'].push(column1_content);
 
 var table2_body = [];
@@ -190,30 +215,28 @@ for (var itr = 38; itr < ange_cards.length; itr++) {
 		 * table_raw3['text'] = ""; } }
 		 */
 	}
-	table_col4['text'] = ange_cards[itr].name;
-	table_col5['text'] = "1";
+	if(true){ //(options.use_official_writing_rule == true)
+		table_col4['text'] = ange_cards[itr].name;
+		table_col5['text'] = ange_cards[itr].amount;
+		if(itr > 0) {
+			if(ange_cards[itr].name === ange_cards[itr - 1].name && ange_cards[itr].amount > 1) {
+				table_col4['text'] = "↓";
+				table_col5['text'] = "↓";
+			}
+		}
+	} else {
+		table_col4['text'] = ange_cards[itr].name;
+		table_col5['text'] = "1";
+	}
 
 	table_cols.push(table_col1, table_col2, table_col4, table_col5);
 	table2_body.push(table_cols);
-/*
-	table_raw.push(table_raw1);
-	table_raw.push(table_raw2);
-	// table_raw.push(table_raw3);
-	table_raw.push(table_raw4);
-	table_raw.push(table_raw5);
-	table2_body.push(table_raw);
-*/
 }
-var column2_content = {};
-var table2_content = {};
 
 table2_content['body'] = table2_body;
 table2_content['widths'] = [ 40, 25, 160, 35 ];
 
 column2_content['table'] = table2_content;
-column2_content['layout'] = 'noBorders';
-column2_content['margin'] = [ 51, 115, 0, 0 ];
-column2_content['width'] = "50%";
 content_content['columns'].push(column2_content);
 
 content_content['alignment'] = 'justify';
